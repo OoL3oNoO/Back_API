@@ -1,0 +1,84 @@
+const dbConnect = require('../dbConnect')
+
+//Requêtes sur la table contacts.
+let contact = {};
+
+//Query sur la table contacts pour toutes les récupèrer
+contact.findAllcontacts = () => {
+  return new Promise((resolve, reject) => {
+    dbConnect.query('SELECT * FROM contacts', (err, res) => {
+      if (err) return reject(err);
+      return resolve(res);
+    });
+  });
+};
+
+//Query sur la table contacts pour récupérer un contact avec un paramètre id.
+contact.onlyOnecontact = id => {
+  return new Promise((resolve, reject) => {
+    dbConnect.query('SELECT * FROM contacts WHERE id_contact = ?', [id], (err, res) => {
+      if (err) return reject(err);
+      return resolve(res);
+    });
+  });
+};
+
+
+//Query sur la table contact pour créer un contact.
+contact.newContact = contact => {
+  return new Promise((resolve, reject) => {
+    const data = [
+      contact.ctsurname,
+      contact.ctname,
+      contact.ctadress,
+      contact.ctzip,
+      contact.ctcity,
+      contact.ctemail,
+      contact.ctfunction,
+      contact.ctphone,
+      contact.entreprises_identreprises,
+    ];
+    const query =
+      'INSERT INTO contact (ctsurname, ctname, ctadress, ctzip, ctcity, ctemail, ctfunction, ctphone, entreprises_identreprises) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
+      dbConnect.query(query, data, (err, res) => {
+      if (err) return reject(err);
+      resolve(res);
+    });
+  });
+};
+
+//Query sur la table contact pour mettre à jour un contact avec un paramètre id.
+contact.updateContact = (contact, id) => {
+  return new Promise((resolve, reject) => {
+    const data = [
+      contact.ctsurname,
+      contact.ctname,
+      contact.ctadress,
+      contact.ctzip,
+      contact.ctcity,
+      contact.ctemail,
+      contact.ctfunction,
+      contact.ctphone,
+      contact.entreprises_identreprises,
+      id,
+    ];
+    const query =
+      'UPDATE contact SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id = ?';
+      dbConnect.query(query, data, (err, res) => {
+      if (err) return reject(err);
+      resolve(res);
+    });
+  });
+};
+
+//Query sur la table contacts pour supprimer une contact avec un paramètre id.
+contact.deleteOnecontact = id => {
+  return new Promise((resolve, reject) => {
+    dbConnect.query('DELETE FROM contacts WHERE id = ?', [id], (err, res) => {
+      if (err) return reject(err);
+      resolve(res);
+    });
+  });
+};
+
+module.exports = contact;
