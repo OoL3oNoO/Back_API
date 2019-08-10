@@ -1,7 +1,7 @@
 const express = require('express');
-const routerContacts = require('express').Router();
+const routerContacts = express.Router();
 const contact = require('../controllers/contacts');
-
+const dbConnect = require('../dbConnect')
 
 ////////////////////////////// CONTACTS ////////////////////////////////////////////
 
@@ -9,7 +9,7 @@ const contact = require('../controllers/contacts');
 // requête sur la table contacts pour récupérer tous les contacts
 routerContacts.get('/', async function (req, res) {
   try{
-    let result = await contact.findAllcontacts();
+    let result = await contact.findAllContacts();
     res.json(result);
   }catch (err) {
     console.log(err);
@@ -18,27 +18,48 @@ routerContacts.get('/', async function (req, res) {
 });
 
 // requête sur la table contacts pour récupérer un contacts
-routerContacts.get('/:id', function (req, res) {
-
-  res.send('Liste un contact spécifique');
+routerContacts.get('/:id', async function (req, res) {
+  try{
+  let result = await contact.onlyOneContact(req.params.id)
+  res.json(result);
+}catch (err){
+  console.log(err)
+  res.sendStatus(500);
+}
 });
 
 // Ajoute un nouveau contact  
-routerContacts.post('/', function (req, res) {
-
-  res.send('Création du premier contact');
+routerContacts.post('/', async function (req, res){
+  try{
+    const contact = req.body;
+    let result = await contact.newContact(contact)
+    res.json(result);
+  }catch (err){
+    console.log(err)
+    res.sendStatus(500);
+  }
 });
 
 //  Met à jour un  contact avec id
-routerContacts.post('/:id', function (req, res) {
-
-  res.send('Modifie un contact spécifique');
+routerContacts.post('/:id', async function (req, res) {
+try{
+let result = await contact.newContact(contact, req.params.id)
+res.json(result);
+}catch (err){
+  console.log(err)
+  res.sendStatus(500);
+}
 });
 
 //  Supprime un contact
-routerContacts.delete('/:id', function (req, res) {
-  
-  res.send('Efface un contact spécifique');
+routerContacts.delete('/:id', async function (req, res) {
+  try {
+    let result = await contact.deleteOneContact(req.params.id);
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 });
 
 module.exports= routerContacts;

@@ -1,39 +1,61 @@
 
-const routerEntreprises = require('express').Router();
+// const routerEntreprises = require('express').Router();
+const express = require('express');
+const routerEntreprises = express.Router();
+const entreprise = require('../controllers/entreprises');
+const dbConnect = require('../dbConnect')
 /////////////////////////////// ENTREPRISES /////////////////////////////////////
 
 
 // requête sur la table entreprises pour récupérer toutes les entreprises
-routerEntreprises.get('/', function (req, res) {
-  res.send('Liste les entreprises')
+routerEntreprises.get('/', async function (req, res) {
+  try{
+    let result = await entreprise.findAllEntreprises();
+    res.json(result);
+  }catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 })
   // requête sur la table entreprises pour récupérer une entreprise avec id
-routerEntreprises.get('/:id', function (req, res) {
-  res.send('Liste une entreprise spécifique');
+routerEntreprises.get('/:id', async function (req, res) {
+  try{
+    let result = await entreprise.onlyOneEntreprise(req.params.id)
+  res.json(result);
+}catch (err){
+  console.log(err)
+  res.sendStatus(500);
+}
 });
   // Ajoute une entreprise  
-routerEntreprises.post('/', function (req, res) {
-    res.send('Création de la première entreprise');
+routerEntreprises.post('/', async function (req, res) {
+  try{
+    const entreprise = req.body;
+    let result = await entreprise.newEntreprise(entreprise)
+    res.json(result);
+  }catch (err){
+    console.log(err)
+    res.sendStatus(500);
+  }
 });
   //  modifie une entreprise avec l'id
-routerEntreprises.post('/:id', function (req, res) {
-  res.send('Modifie une entreprise spécifique');
+routerEntreprises.post('/:id', async function (req, res) {
+  try{
+    let result = await entreprise.updateEntreprise(entreprise, req.params.id)
+    res.json(result);
+    }catch (err){
+      console.log(err)
+      res.sendStatus(500);
+    }
 });
   //  supprime une entreprise avec l'id
-routerEntreprises.delete('/:id', function (req, res) {
-  res.send('supprime une entreprise spécifique');
+routerEntreprises.delete('/:id', async function (req, res) {
+  try {
+    let result = await entreprise.deleteOneEntreprise(req.params.id);
+    res.json(result);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 });
   module.exports=routerEntreprises
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = routerEntreprises;

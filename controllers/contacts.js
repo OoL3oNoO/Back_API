@@ -1,10 +1,12 @@
 const dbConnect = require('../dbConnect')
+const express = require('express');
+
 
 //Requêtes sur la table contacts.
 let contact = {};
 
-//Query sur la table contacts pour toutes les récupèrer
-contact.findAllcontacts = () => {
+//Requete sur la table contacts pour toutes les récupèrer
+contact.findAllContacts = () => {
   return new Promise((resolve, reject) => {
     dbConnect.query('SELECT * FROM contacts', (err, res) => {
       if (err) return reject(err);
@@ -14,7 +16,7 @@ contact.findAllcontacts = () => {
 };
 
 //Query sur la table contacts pour récupérer un contact avec un paramètre id.
-contact.onlyOnecontact = id => {
+contact.onlyOneContact = id => {
   return new Promise((resolve, reject) => {
     dbConnect.query('SELECT * FROM contacts WHERE id_contact = ?', [id], (err, res) => {
       if (err) return reject(err);
@@ -72,7 +74,7 @@ contact.updateContact = (contact, id) => {
 };
 
 //Query sur la table contacts pour supprimer une contact avec un paramètre id.
-contact.deleteOnecontact = id => {
+contact.deleteOneContact = id => {
   return new Promise((resolve, reject) => {
     dbConnect.query('DELETE FROM contacts WHERE id = ?', [id], (err, res) => {
       if (err) return reject(err);

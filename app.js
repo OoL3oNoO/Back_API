@@ -1,7 +1,7 @@
 //Import d'express et d'autres dépendances nécessaires au fonctionnement de l'application.
 const express = require('express');
 //Import de cors pour le traitement des requêtes provenant de domaine differents, placer avant la création du serveur.
-var cors = require('cors')
+var cors = require('cors');
 //La variable express nous permettra d'utiliser les fonctionnalités du module Express. 
 const app = express();
 
