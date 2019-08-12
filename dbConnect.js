@@ -1,10 +1,10 @@
 var mysql = require("mysql");
 
 var dbConnect = mysql.createConnection({
-  host: "bketdv3flolcnrqngjrc-mysql.services.clever-cloud.com",
-  database: "bketdv3flolcnrqngjrc",
-  user: "udgjktbakc9gyn35",
-  password: "BkQJ6OFn433EZnHQwio6"
+  host: process.env.MYSQL_ADDON_HOST,
+  database: process.env.MYSQL_ADDON_DB,
+  user: process.env.MYSQL_ADDON_USER,
+  password: process.env.MYSQL_ADDON_PASSWORD,
 });
 
 module.exports = dbConnect;
