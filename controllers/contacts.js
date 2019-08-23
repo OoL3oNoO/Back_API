@@ -78,7 +78,7 @@ contact.deleteOneContact = id => {
   return new Promise((resolve, reject) => {
     dbConnect.query('DELETE FROM contacts WHERE id = ?', [id], (err, res) => {
       if (err) return reject(err);
-      resolve(res);
+      resolve(res[0]);
     });
   });
 };
