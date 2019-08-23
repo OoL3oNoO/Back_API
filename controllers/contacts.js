@@ -41,7 +41,7 @@ contact.newContact = contact => {
       contact.entreprises_identreprises,
     ];
     const query =
-      'INSERT INTO contact (ctsurname, ctname, ctadress, ctzip, ctcity, ctemail, ctfunction, ctphone, entreprises_identreprises) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
+      'INSERT INTO contacts (ctsurname, ctname, ctadress, ctzip, ctcity, ctemail, ctfunction, ctphone, entreprises_identreprises) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
       dbConnect.query(query, data, (err, res) => {
       if (err) return reject(err);
       resolve(res);
@@ -65,7 +65,7 @@ contact.updateContact = (contact, id) => {
       id,
     ];
     const query =
-      'UPDATE contact SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id = ?';
+      'UPDATE contacts SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id = ?';
       dbConnect.query(query, data, (err, res) => {
       if (err) return reject(err);
       resolve(res);
