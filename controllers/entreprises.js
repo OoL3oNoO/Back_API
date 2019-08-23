@@ -75,7 +75,7 @@ entreprise.updateEntreprise = (entreprise, id) => {
 //Query sur la table entreprise pour supprimer une entreprise avec un paramètre id.
 entreprise.deleteOneEntreprise = id => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('DELETE FROM entreprises WHERE id = ?', [id], (err, res) => {
+    dbConnect.query('DELETE FROM entreprises WHERE identreprises = ?', [id], (err, res) => {
       if (err) return reject(err);
       resolve(res);
     });
