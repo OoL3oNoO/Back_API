@@ -42,7 +42,7 @@ routerContacts.post('/', async function (req, res){
 //  Met à jour un  contact avec id
 routerContacts.post('/:id', async function (req, res) {
 try{
-let result = await contact.newContact(contact, req.params.id)
+let result = await contact.newContact(req.query, req.params.id)
 res.json(result);
 }catch (err){
   console.log(err)

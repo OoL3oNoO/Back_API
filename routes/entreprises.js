@@ -30,8 +30,8 @@ routerEntreprises.get('/:id', async function (req, res) {
   // Ajoute une entreprise  
 routerEntreprises.post('/', async function (req, res) {
   try{
-    const entreprise = req.body;
-    let result = await entreprise.newEntreprise(entreprise)
+    
+    let result = await entreprise.newEntreprise(req.query)
     res.json(result);
   }catch (err){
     console.log(err)
@@ -41,7 +41,7 @@ routerEntreprises.post('/', async function (req, res) {
   //  modifie une entreprise avec l'id
 routerEntreprises.post('/:id', async function (req, res) {
   try{
-    let result = await entreprise.updateEntreprise(entreprise, req.params.id)
+    let result = await entreprise.updateEntreprise(req.query, req.params.id)
     res.json(result);
     }catch (err){
       console.log(err)
