@@ -31,7 +31,7 @@ routerContacts.get('/:id', async function (req, res) {
 // Ajoute un nouveau contact  
 routerContacts.post('/', async function (req, res){
   try{
-    let result = await contact.newContact(req.query)
+    let result = await contact.newContact(req.body)
     res.json(result);
   }catch (err){
     console.log(err)
@@ -42,7 +42,7 @@ routerContacts.post('/', async function (req, res){
 //  Met à jour un  contact avec id
 routerContacts.post('/:id', async function (req, res) {
 try{
-let result = await contact.newContact(req.query, req.params.id)
+let result = await contact.newContact(req.body, req.params.id)
 res.json(result);
 }catch (err){
   console.log(err)
