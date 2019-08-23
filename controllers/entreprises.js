@@ -35,7 +35,7 @@ entreprise.newEntreprise = entreprise => {
       entreprise.entcity,
       entreprise.entphone,
       entreprise.entmail,
-      entreprise.statut,
+      entreprise.entstatut,
       entreprise.entsiret,
       entreprise.contacts_id_contact,
     ];
@@ -58,7 +58,7 @@ entreprise.updateEntreprise = (entreprise, id) => {
         entreprise.entcity,
         entreprise.entphone,
         entreprise.entmail,
-        entreprise.statut,
+        entreprise.entstatut,
         entreprise.entsiret,
         entreprise.contacts_id_contact,
       id,
