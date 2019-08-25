@@ -53,6 +53,7 @@ contact.newContact = contact => {
 contact.updateContact = (contact, id) => {
   return new Promise((resolve, reject) => {
     const data = [
+      contact.id_contact,
       contact.ctsurname,
       contact.ctname,
       contact.ctadress,
@@ -62,10 +63,10 @@ contact.updateContact = (contact, id) => {
       contact.ctfunction,
       contact.ctphone,
       contact.entreprises_identreprises,
-      id,
+      
     ];
     const query =
-      'UPDATE contacts SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id = ?';
+      'UPDATE contacts SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id_contact= ?';
       dbConnect.query(query, data, (err, res) => {
       if (err) return reject(err);
       resolve(res);

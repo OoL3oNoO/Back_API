@@ -52,7 +52,7 @@ entreprise.newEntreprise = entreprise => {
 entreprise.updateEntreprise = (entreprise, id) => {
   return new Promise((resolve, reject) => {
     const params = [
-        
+        entreprise.identreprises,
         entreprise.entname,
         entreprise.entadress,
         entreprise.entzip,
@@ -62,10 +62,10 @@ entreprise.updateEntreprise = (entreprise, id) => {
         entreprise.entstatut,
         entreprise.entsiret,
         entreprise.contacts_id_contact,
-      id,
+      
     ];
     const query =
-      'UPDATE entreprises SET entname = ?, entadress = ?, entzip = ?, entcity = ?, entphone = ?, entmail = ? entstatut = ?, entsiret = ?, contacts_id_contact = ? WHERE id = ?';
+      'UPDATE entreprises SET entname = ?, entadress = ?, entzip = ?, entcity = ?, entphone = ?, entmail = ? entstatut = ?, entsiret = ?, contacts_id_contact = ? WHERE identreprises = ?';
       dbConnect.query(query, params, (err, res) => {
       if (err) return reject(err);
       resolve(res);
