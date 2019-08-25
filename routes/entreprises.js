@@ -38,7 +38,7 @@ routerEntreprises.post('/', async function (req, res) {
   }
 });
   //  modifie une entreprise avec l'id
-routerEntreprises.post('/:id', async function (req, res) {
+routerEntreprises.put('/:id', async function (req, res) {
   try{
     let result = await entreprise.updateEntreprise(req.body, req.params.id)
     res.json(result);

@@ -65,7 +65,7 @@ entreprise.updateEntreprise = (entreprise, id) => {
       id,
     ];
     const query =
-      'UPDATE entreprises SET identreprise=?, entname = ?, entadress = ?, entzip = ?, entcity = ?, entphone = ?, entmail = ? entstatut = ?, entsiret = ?, contacts_id_contact = ? WHERE id = ?';
+      'UPDATE entreprises SET identreprise= ?, entname = ?, entadress = ?, entzip = ?, entcity = ?, entphone = ?, entmail = ? entstatut = ?, entsiret = ?, contacts_id_contact = ? WHERE id = ?';
       dbConnect.query(query, params, (err, res) => {
       if (err) return reject(err);
       resolve(res);

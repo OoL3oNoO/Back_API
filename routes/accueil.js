@@ -3,7 +3,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   const accueil =
-    "Bienvenue sur le systeme de gestion de contact TRECOBAT";
+    "Bienvenue sur le systeme de gestion TRECOBAT";
   res.send(accueil);
 });
 
