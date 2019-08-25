@@ -52,16 +52,16 @@ entreprise.newEntreprise = entreprise => {
 entreprise.updateEntreprise = (entreprise, id) => {
   return new Promise((resolve, reject) => {
     const params = [
-        entreprise.identreprises,
-        entreprise.entname,
-        entreprise.entadress,
-        entreprise.entzip,
-        entreprise.entcity,
-        entreprise.entphone,
-        entreprise.entmail,
-        entreprise.entstatut,
-        entreprise.entsiret,
-        entreprise.contacts_id_contact,
+      entreprise.entname,
+      entreprise.entadress,
+      entreprise.entzip,
+      entreprise.entcity,
+      entreprise.entphone,
+      entreprise.entmail,
+      entreprise.entstatut,
+      entreprise.entsiret,
+      entreprise.contacts_id_contact,
+      entreprise.identreprises,
       
     ];
     const query =

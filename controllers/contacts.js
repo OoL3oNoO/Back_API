@@ -53,7 +53,6 @@ contact.newContact = contact => {
 contact.updateContact = (contact, id) => {
   return new Promise((resolve, reject) => {
     const data = [
-      contact.id_contact,
       contact.ctsurname,
       contact.ctname,
       contact.ctadress,
@@ -63,6 +62,7 @@ contact.updateContact = (contact, id) => {
       contact.ctfunction,
       contact.ctphone,
       contact.entreprises_identreprises,
+      contact.id_contact,
       
     ];
     const query =
