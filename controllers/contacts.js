@@ -62,8 +62,7 @@ contact.updateContact = (contact, id) => {
       contact.ctfunction,
       contact.ctphone,
       contact.entreprises_identreprises,
-      contact.id_contact,
-      
+      id
     ];
     const query =
       'UPDATE contacts SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id_contact= ?';

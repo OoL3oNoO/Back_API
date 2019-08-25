@@ -61,7 +61,7 @@ entreprise.updateEntreprise = (entreprise, id) => {
       entreprise.entstatut,
       entreprise.entsiret,
       entreprise.contacts_id_contact,
-      entreprise.identreprises,
+     id
       
     ];
     const query =
