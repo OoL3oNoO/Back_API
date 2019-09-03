@@ -37,10 +37,9 @@ entreprise.newEntreprise = entreprise => {
       entreprise.entmail,
       entreprise.entstatut,
       entreprise.entsiret,
-      entreprise.contacts_id_contact,
     ];
     const query =
-      'INSERT INTO entreprises (entname, entadress, entzip, entcity, entphone, entmail, entstatut, entsiret, contacts_id_contact) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
+      'INSERT INTO entreprises (entname, entadress, entzip, entcity, entphone, entmail, entstatut, entsiret) VALUES (?, ?, ?, ?, ?, ?, ?,?,)';
       dbConnect.query(query, params, (err, res) => {
       if (err) return reject(err);
       resolve(res);
@@ -60,11 +59,10 @@ entreprise.updateEntreprise = (entreprise, id) => {
       entreprise.entmail,
       entreprise.entstatut,
       entreprise.entsiret,
-      entreprise.contacts_id_contact,
       id
     ];
     const query =
-      'UPDATE entreprises SET entname = ?, entadress = ?, entzip = ?, entcity = ?, entphone = ?, entmail = ?, entstatut = ?, entsiret = ?, contacts_id_contact = ? WHERE identreprises = ?';
+      'UPDATE entreprises SET entname = ?, entadress = ?, entzip = ?, entcity = ?, entphone = ?, entmail = ?, entstatut = ?, entsiret = ? WHERE identreprises = ?';
       dbConnect.query(query, params, (err, res) => {
       if (err) return reject(err);
       resolve(res);
