@@ -18,7 +18,7 @@ contact.findAllContacts = () => {
 //Query sur la table contacts pour récupérer un contact avec un paramètre id.
 contact.onlyOneContact = id => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('SELECT * FROM contacts, entreprises.entname WHERE contacts.entreprises_identreprises = entreprises.identreprises, id_contact = ?', [id], (err, res) => {
+    dbConnect.query('SELECT * FROM contacts, entreprises.entname WHERE contacts.entreprises_identreprises = entreprises.identreprises Where id_contact = ?', [id], (err, res) => {
       if (err) return reject(err);
       return resolve(res);
     });
