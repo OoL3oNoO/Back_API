@@ -8,7 +8,7 @@ let contact = {};
 //Requete sur la table contacts pour toutes les récupèrer
 contact.findAllContacts = () => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('SELECT `contacts`.*, `entreprises`.`entname` FROM `entreprises` LEFT JOIN `bketdv3flolcnrqngjrc`.`contacts` ON `entreprises`.`identreprises` = `contacts`.`entreprises_identreprises`', (err, res) => {
+    dbConnect.query('FROM `entreprises`LEFT JOIN `bketdv3flolcnrqngjrc`.`contacts` ON `entreprises`.`identreprises` = `contacts`.`entreprises_identreprises`', (err, res) => {
       if (err) return reject(err);
       return resolve(res);
     });
