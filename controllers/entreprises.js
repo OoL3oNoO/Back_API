@@ -39,7 +39,7 @@ entreprise.newEntreprise = entreprise => {
       entreprise.entsiret,
     ];
     const query =
-      'INSERT INTO entreprises (entname, entadress, entzip, entcity, entphone, entmail, entstatut, entsiret) VALUES (?, ?, ?, ?, ?, ?, ?,?,)';
+      'INSERT INTO entreprises (entname, entadress, entzip, entcity, entphone, entmail, entstatut, entsiret) VALUES (?, ?, ?, ?, ?, ?, ?,?)';
       dbConnect.query(query, params, (err, res) => {
       if (err) return reject(err);
       resolve(res);
