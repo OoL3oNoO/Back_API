@@ -7,7 +7,7 @@ let entreprise = {};
 //Query sur la table entreprise pour toutes les récupèrer
 entreprise.findAllEntreprises = () => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('SELECT e.*, c.* FROM contacts as c, entreprises as e WHERE c.entreprises_identreprises = e.identreprises ', (err, res) => {
+    dbConnect.query('SELECT * FROM entreprises', (err, res) => {
       if (err) return reject(err);
       return resolve(res);
     });
