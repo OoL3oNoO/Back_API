@@ -18,7 +18,7 @@ entreprise.findAllEntreprises = () => {
 //Query sur la table entreprise pour récupérer une entreprise avec un paramètre id.
 entreprise.onlyOneEntreprise = id => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('SELECT * FROM entreprises LEFT JOIN contacts ON entreprises.identreprises = contacts.entreprises_identreprises WHERE entreprises.identreprises = ?', [id], (err, res) => {
+    dbConnect.query('SELECT DISTINCT * FROM entreprises LEFT JOIN contacts ON entreprises.identreprises = contacts.entreprises_identreprises WHERE entreprises.identreprises = ?', [id], (err, res) => {
       if (err) return reject(err);
       return resolve(res);
     });
