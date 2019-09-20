@@ -1,6 +1,5 @@
-const dbConnect = require('../dbConnect')
-const express = require('express');
-
+const dbConnect = require("../dbConnect");
+const express = require("express");
 
 //Requêtes sur la table contacts.
 let contact = {};
@@ -8,7 +7,9 @@ let contact = {};
 //Requete sur la table contacts pour toutes les récupèrer
 contact.findAllContacts = () => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('SELECT c.*, e.entname FROM contacts as c, entreprises as e WHERE c.entreprises_identreprises = e.identreprises', (err, res) => {
+    var query =
+      "SELECT c.*, e.entname FROM contacts as c, entreprises as e WHERE c.entreprises_identreprises = e.identreprises";
+    dbConnect.query(query, (err, res) => {
       if (err) return reject(err);
       return resolve(res);
     });
@@ -18,7 +19,9 @@ contact.findAllContacts = () => {
 //Query sur la table contacts pour récupérer un contact avec un paramètre id.
 contact.onlyOneContact = id => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('SELECT c.*, e.entname FROM contacts as c, entreprises as e WHERE c.entreprises_identreprises = e.identreprises AND c.id_contact = ?', [id], (err, res) => {
+    var query =
+      "SELECT c.*, e.entname FROM contacts as c, entreprises as e WHERE c.entreprises_identreprises = e.identreprises AND c.id_contact = ?";
+    dbConnect.query(query, [id], (err, res) => {
       if (err) return reject(err);
       return resolve(res);
     });
@@ -33,7 +36,6 @@ contact.onlyOneContact = id => {
 //   });
 // };
 
-
 //Query sur la table contact pour créer un contact.
 contact.newContact = contact => {
   return new Promise((resolve, reject) => {
@@ -46,11 +48,11 @@ contact.newContact = contact => {
       contact.ctemail,
       contact.ctfunction,
       contact.ctphone,
-      contact.entreprises_identreprises,
+      contact.entreprises_identreprises
     ];
     const query =
-      'INSERT INTO contacts (ctsurname, ctname, ctadress, ctzip, ctcity, ctemail, ctfunction, ctphone, entreprises_identreprises) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)';
-      dbConnect.query(query, data, (err, res) => {
+      "INSERT INTO contacts (ctsurname, ctname, ctadress, ctzip, ctcity, ctemail, ctfunction, ctphone, entreprises_identreprises) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
+    dbConnect.query(query, data, (err, res) => {
       if (err) return reject(err);
       resolve(res);
     });
@@ -73,8 +75,8 @@ contact.updateContact = (contact, id) => {
       id
     ];
     const query =
-      'UPDATE contacts SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id_contact= ?';
-      dbConnect.query(query, data, (err, res) => {
+      "UPDATE contacts SET ctsurname = ?, ctname = ?, ctadress = ?, ctzip = ?, ctcity = ?, ctemail = ?, ctfunction = ?, ctphone = ?, entreprises_identreprises = ? WHERE id_contact= ?";
+    dbConnect.query(query, data, (err, res) => {
       if (err) return reject(err);
       resolve(res);
     });
@@ -84,7 +86,8 @@ contact.updateContact = (contact, id) => {
 //Query sur la table contacts pour supprimer une contact avec un paramètre id.
 contact.deleteOneContact = id => {
   return new Promise((resolve, reject) => {
-    dbConnect.query('DELETE FROM contacts WHERE id_contact = ?', [id], (err, res) => {
+    var query = "DELETE FROM contacts WHERE id_contact = ?";
+    dbConnect.query(query, [id], (err, res) => {
       if (err) return reject(err);
       resolve(res[0]);
     });
